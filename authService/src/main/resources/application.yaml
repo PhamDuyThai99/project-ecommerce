@@ -1,0 +1,23 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: "authService"
+  datasource:
+    url: "jdbc:mysql://localhost:3306/auth"
+    driverClassName: "com.mysql.cj.jdbc.Driver"
+    username: "root"
+    password: "root"
+  jpa:
+    hibernate:
+      ddl-auto: "update"
+    show-sql: true
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+logging:
+  level:
+    org:
+      springframework:
+        security: TRACE

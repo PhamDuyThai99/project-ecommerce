@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: "apiGatewayService"
+
+app:
+  api-prefix: api
+
+
+server:
+  port: 8080
+
+logging:
+  level:
+    org:
+      springframework:
+        security: TRACE
