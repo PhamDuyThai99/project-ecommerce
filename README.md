@@ -15,7 +15,7 @@ This is an e-commerce backend system using Spring Boot, build in microservice pa
   + Provides APIs that supports the log-in, log-out, and token validation.
 
 - **ApiGatewayService**:
-  + Centralizes endpoints to route requests to approriate services.
+  + Centralizes endpoints to route requests to appropriate services.
   + Validates user authentication and authorization based on the JWT token.
 
 - **ProductManagementService**:
