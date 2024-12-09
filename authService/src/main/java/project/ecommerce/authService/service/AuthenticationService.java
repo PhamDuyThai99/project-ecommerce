@@ -30,37 +30,24 @@ import java.util.Optional;
 @Slf4j
 public class AuthenticationService {
 
-    private static final String GET_USER_BY_USERNAME_URL = "http://localhost:8080/api/internal/users/{username}";
-
     private final OauthAccessTokenRepository oauthAccessTokenRepository;
     private final PasswordEncoder passwordEncoder;
-    private final RestTemplate restTemplate;
-    private final ObjectMapper objectMapper;
+    private final UserService userService;
     private final HttpServletRequest request;
 
-    public AuthenticationService(OauthAccessTokenRepository oauthAccessTokenRepository, PasswordEncoder passwordEncoder, RestTemplate restTemplate, ObjectMapper objectMapper, HttpServletRequest request) {
+    public AuthenticationService(OauthAccessTokenRepository oauthAccessTokenRepository,
+                                 PasswordEncoder passwordEncoder,
+                                 UserService userService,
+                                 HttpServletRequest request) {
         this.oauthAccessTokenRepository = oauthAccessTokenRepository;
         this.passwordEncoder = passwordEncoder;
-        this.restTemplate = restTemplate;
-        this.objectMapper = objectMapper;
+        this.userService = userService;
         this.request = request;
     }
 
     @Transactional
     public AuthenticationResponse login(AuthenticationRequest request) {
-        String getUserUrl = GET_USER_BY_USERNAME_URL.replace("{username}", request.getUsername());
-        ApiResponse apiResponse;
-        try {
-            log.info("AuthenticationRequest {}", request);
-            apiResponse = restTemplate.getForObject(getUserUrl, ApiResponse.class);
-            log.info("found user apiResponse: " + apiResponse);
-        } catch (RuntimeException ex) {
-            throw new AppException(ApiError.UNAUTHENTICATED);
-        }
-        assert apiResponse != null;
-        UserInternalResponse response = objectMapper.convertValue(apiResponse.getData(), UserInternalResponse.class);
-        log.info("UserInternalResponse: " + response);
-
+        UserInternalResponse response = userService.getUserByUsernameFromUserService(request.getUsername());
         if (!passwordEncoder.matches(request.getPassword(), response.getPassword())) {
             throw new AppException(ApiError.UNAUTHENTICATED);
         }

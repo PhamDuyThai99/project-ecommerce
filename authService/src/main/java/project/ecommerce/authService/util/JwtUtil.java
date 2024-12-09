@@ -2,6 +2,7 @@ package project.ecommerce.authService.util;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import project.ecommerce.authService.dto.response.external.RoleResponse;
 import project.ecommerce.authService.dto.response.external.UserInternalResponse;
@@ -17,8 +18,10 @@ import java.util.UUID;
 @Slf4j
 public class JwtUtil {
 
-    private static final String SECRET_KEY = "e499fd93ee8d8e85ae346277ba346d4b523b9d514fd3db9b8d641eeee9546fbd71a84caabb22a533f5d9ac95b46f96175e8fc3cc0f377ad386e9e9ad270b7f00";
-    private static final long EXPIRATION_TIME = 600_000; // 1 hour
+    @Value("${token.secreteKey}")
+    private static final String SECRET_KEY;
+    @Value("${token.expiredTime}")
+    private static final long EXPIRATION_TIME;
 
     public static String generateToken(UserInternalResponse response) {
         try {

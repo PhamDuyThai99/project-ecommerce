@@ -21,3 +21,11 @@ logging:
     org:
       springframework:
         security: TRACE
+
+token:
+  secreteKey: "e499fd93ee8d8e85ae346277ba346d4b523b9d514fd3db9b8d641eeee9546fbd71a84caabb22a533f5d9ac95b46f96175e8fc3cc0f377ad386e9e9ad270b7f00"
+  expiredTime: 600_000
+
+externalApi:
+  userService:
+    getUserByUsernameUrl: "http://localhost:8080/api/internal/users/{username}"
