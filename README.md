@@ -3,7 +3,7 @@
 # **Description**
 This is an e-commerce backend system using Spring Boot, build in microservice pattern with multiple functions: Authentication and Authorization, User Management, Product Inventory, Cart Management, Payment and Balance Processing.
 
-# **Services**:
+# **Services**
 
 - **UserManagementService**:
   + Manages user's basic profile and role's information.
@@ -25,6 +25,13 @@ This is an e-commerce backend system using Spring Boot, build in microservice pa
 - **PaymentManagementService**
   + Manage user balances and related financial transactions
   + Enables peer-to-peer money between system users.
-  + Enables users to check-out and complete cart transaction, payment is transfered to product's owner's balance 
- 
+  + Enables users to check-out and complete cart transaction, payment is transfered to product's owner's balance.
 
+# **Technology Used**
+- **Spring Boot** for building microservices
+- **Spring Cloud Gatewa**y for API gateway
+- **Spring Security** for authentication and authorization
+- **JWT** for token-based authentication
+- **MySQL** for the database
+- **JUnit**, **Mockito** for unit testings
+- **Swagger** for API documentation
