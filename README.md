@@ -44,13 +44,13 @@ This is an e-commerce backend system using Spring Boot, build in microservice pa
 
 # **Installation**
 1. Clone the repository
-   git clone PhamDuyThai99/project-ecommerce
+    - git clone PhamDuyThai99/project-ecommerce
 2. Navigate to the project directory
 3. Install dependencies and build the project
-   ./mvnw clean install
+    - ./mvnw clean install
 4. Setup the database (MySQL) and configure the application properties
-  - username: root
-  - password: root
+    - username: root
+    - password: root
 5. Run the application:
-  ./mvnw spring-boot:run
+    - ./mvnw spring-boot:run
 
