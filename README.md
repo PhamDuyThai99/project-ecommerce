@@ -6,25 +6,25 @@ This is an e-commerce backend system using Spring Boot, build in microservice pa
 # **Services**:
 
 - **UserManagementService**:
-  + Manage user's basic profile and role's information
-  + Role: Allows authorized user to create, get the role
-  + User: Allows authorized user to register, validation user's data, get all or specific user's information, update user's data, delete.
+  + Manages user's basic profile and role's information.
+  + Role Management: Enables authorized user to create, and retrieve roles.
+  + User Management: Allows authorized user to register new accounts, validation user data, get specific or all user information, update profile, delete users.
 - **AuthService**:
-  + Secured the system by jwt token-based authentication
-  + Expose apis that support the log-in, log-out, and validate the token
+  + Secures the system using jwt token-based authentication.
+  + Provides APIs that supports the log-in, log-out, and token validation.
 - **ApiGatewayService**:
-  + Centralize endpoints for routing to different services
-  + Based on user's current jwt token to validate user's authentication and authorization status
+  + Centralizes endpoints to route requests to approriate services.
+  + Validates user authentication and authorization based on the JWT token.
 - **ProductManagementService**:
-  + Manage product's inventory data
-  + Allows specific user to add new, get, update or delete product from inventory
-  + Expose apis for internally inventory status check
+  + Manage product inventory data.
+  + Enables specific user to add, retrieve, update or delete products in the inventory.
+  + Exposes APIs for internally inventory status checks.
 - **CartMangementService**
-  + Manage cart and its product of each users
-  + Validate user and product's status
+  + Manages user carts and associated products
+  + Validates the status of users and products in the cart
 - **PaymentManagementService**
-  + Manage user balance and inventory 
-  + Allows user to transfer money from a user to another user (peer-to-peer transaction)
-  + Allows user to check-out a cart transaction
+  + Manage user balances and related financial transactions
+  + Enables peer-to-peer money between system users.
+  + Enables users to check-out and complete cart transaction, payment is transfered to product's owner's balance 
  
 
