@@ -29,7 +29,7 @@ public class BalanceController {
     public ApiResponse<BalanceResponse> getByUserId(@PathVariable("userId") Long userId) {
         return ApiResponse.<BalanceResponse>builder()
                 .status(new ResponseStatus())
-                .data(balanceService.getByUserId(userId))
+                .data(balanceService.getBalanceByUserId(userId))
                 .build();
     }
 

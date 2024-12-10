@@ -73,6 +73,4 @@ public class TransactionMapper {
                 .transactionId(transaction.getTransactionId())
                 .build();
     }
-
-
 }

@@ -1,36 +1,29 @@
 package project.ecommerce.userMangementService.service.TransactionServices;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import project.ecommerce.userMangementService.dto.response.BalanceResponse;
-import project.ecommerce.userMangementService.dto.response.common.ApiResponse;
 import project.ecommerce.userMangementService.dto.response.external.CartResponse;
 import project.ecommerce.userMangementService.entity.TransactionEntity;
 import project.ecommerce.userMangementService.enums.PaymentStatusEnum;
 import project.ecommerce.userMangementService.exception.ApiError;
 import project.ecommerce.userMangementService.exception.AppException;
 import project.ecommerce.userMangementService.service.BalanceService;
+import project.ecommerce.userMangementService.service.external.CartService;
 
 import java.math.BigDecimal;
 
 @Service
 public class TransactionValidationService {
-    private final static String GET_CART_BY_ID_URL = "http://localhost:8080/api/cart/{cartId}";
-    private final RestTemplate restTemplate;
-    private final ObjectMapper objectMapper;
+    private final CartService cartService;
     private final BalanceService balanceService;
 
-    public TransactionValidationService(RestTemplate restTemplate,
-                                        ObjectMapper objectMapper,
-                                        BalanceService balanceService) {
-        this.restTemplate = restTemplate;
-        this.objectMapper = objectMapper;
+    public TransactionValidationService(CartService cartService, BalanceService balanceService) {
+        this.cartService = cartService;
         this.balanceService = balanceService;
     }
 
     public void validateBalance(Long userId, BigDecimal amount) {
-        BalanceResponse balance = balanceService.getByUserId(userId);
+        BalanceResponse balance = balanceService.getBalanceByUserId(userId);
         if (balance.getBalance().compareTo(amount) < 0) {
             throw new AppException(ApiError.INSUFFICIENT_FUND);
         }
@@ -47,11 +40,6 @@ public class TransactionValidationService {
     }
 
     public CartResponse validateCart(Long cartId) {
-        String url = GET_CART_BY_ID_URL.replace("{cartId}", cartId.toString());
-        ApiResponse apiResponse = restTemplate.getForObject(url, ApiResponse.class);
-        if (apiResponse == null || apiResponse.getData() == null) {
-            throw new AppException(ApiError.CART_NOT_FOUND);
-        }
-        return objectMapper.convertValue(apiResponse.getData(), CartResponse.class);
+        return cartService.getCartFromCartService(cartId);
     }
 }

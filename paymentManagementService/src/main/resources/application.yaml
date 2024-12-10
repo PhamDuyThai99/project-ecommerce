@@ -21,3 +21,10 @@ logging:
     org:
       springframework:
         security: TRACE
+
+externalApis:
+  cartService:
+    getCartByIdUrl: "http://localhost:8080/api/cart/{cartId}";
+  userService:
+    getUserByIdUrl: "http://localhost:8080/api/users/{userId}"
+    getCurrentUserUrl: "http://localhost:8080/api/users/{userId}"

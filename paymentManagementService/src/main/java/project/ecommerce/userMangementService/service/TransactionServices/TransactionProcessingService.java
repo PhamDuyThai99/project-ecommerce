@@ -3,7 +3,6 @@ package project.ecommerce.userMangementService.service.TransactionServices;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import project.ecommerce.userMangementService.dto.response.BalanceResponse;
 import project.ecommerce.userMangementService.dto.response.external.CartResponse;
 import project.ecommerce.userMangementService.entity.TransactionEntity;
 import project.ecommerce.userMangementService.enums.PaymentStatusEnum;
@@ -15,7 +14,6 @@ import project.ecommerce.userMangementService.service.BalanceService;
 
 import java.math.BigDecimal;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,36 +29,30 @@ public class TransactionProcessingService {
 
     @Transactional
     public synchronized void executeTransaction(TransactionEntity transaction) {
-//        Objects.isNull(transaction.getPayerId());
-//        Objects.isNull(transaction.getPayerId());
-//        synchronized (transaction.getPayerId().toString().intern()) {
-//            synchronized (transaction.getPayeeId().toString().intern()) {
-                try {
-                    String transactionType = transaction.getTransactionType();
-                    BigDecimal amount = transaction.getAmount();
-                    if (transactionType.equals(TransactionTypeEnum.P2P.getTransactionType()) ||
-                            transactionType.equals(TransactionTypeEnum.CART.getTransactionType())) {
+        try {
+            String transactionType = transaction.getTransactionType();
+            BigDecimal amount = transaction.getAmount();
+            if (transactionType.equals(TransactionTypeEnum.P2P.getTransactionType()) ||
+                    transactionType.equals(TransactionTypeEnum.CART.getTransactionType())) {
 
-                        updateUserBalance(transaction.getPayerId(), amount, true);
-                        updateUserBalance(transaction.getPayeeId(), amount, false);
+                updateUserBalance(transaction.getPayerId(), amount, true);
+                updateUserBalance(transaction.getPayeeId(), amount, false);
 
-                    } else if (transactionType.equals(TransactionTypeEnum.RELOAD.getTransactionType())) {
-                        updateUserBalance(transaction.getPayeeId(), amount, false);
+            } else if (transactionType.equals(TransactionTypeEnum.RELOAD.getTransactionType())) {
+                updateUserBalance(transaction.getPayeeId(), amount, false);
 
-                    } else if (transactionType.equals(TransactionTypeEnum.WITHDRAW.getTransactionType())) {
-                        updateUserBalance(transaction.getPayerId(), amount, true);
-                    }
+            } else if (transactionType.equals(TransactionTypeEnum.WITHDRAW.getTransactionType())) {
+                updateUserBalance(transaction.getPayerId(), amount, true);
+            }
 
-                    // update transaction status
-                    transaction.setOrderStatus(PaymentStatusEnum.SUCCESS.getStatus());
+            // update transaction status
+            transaction.setOrderStatus(PaymentStatusEnum.SUCCESS.getStatus());
 
-                } catch (RuntimeException ex) {
-                    transaction.setOrderStatus(PaymentStatusEnum.FAILED.getStatus());
-                    log.error("Failed in execute transaction: {}", ex.getMessage());
-                }
-                transactionRepository.save(transaction);
-//            }
-//        }
+        } catch (RuntimeException ex) {
+            transaction.setOrderStatus(PaymentStatusEnum.FAILED.getStatus());
+            log.error("Failed in execute transaction: {}", ex.getMessage());
+        }
+        transactionRepository.save(transaction);
     }
 
     public BigDecimal getCartTotalCost(CartResponse cart) {
@@ -87,10 +79,10 @@ public class TransactionProcessingService {
         }
         BigDecimal newPayerBalance;
         if(isDebit) {
-            newPayerBalance = balanceService.getByUserId(userId)
+            newPayerBalance = balanceService.getBalanceByUserId(userId)
                     .getBalance().subtract(amount);
         } else {
-            newPayerBalance = balanceService.getByUserId(userId)
+            newPayerBalance = balanceService.getBalanceByUserId(userId)
                     .getBalance().add(amount);
         }
         balanceService.updateBalance(userId, newPayerBalance);
