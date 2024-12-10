@@ -21,3 +21,9 @@ logging:
     org:
       springframework:
         security: TRACE
+
+externalApi:
+  productService:
+    getProductByIdUrl: "http://localhost:8080/api/products/{id}"
+    updateProductUrl: "http://localhost:8080/api/products/{id}"
+    searchProductsUrl: "http://localhost:8080/api/products/search"

@@ -14,6 +14,7 @@ import project.ecommerce.userMangementService.entity.CartEntity;
 import project.ecommerce.userMangementService.exception.ApiError;
 import project.ecommerce.userMangementService.exception.AppException;
 import project.ecommerce.userMangementService.repository.CartRepository;
+import project.ecommerce.userMangementService.service.external.UserService;
 import project.ecommerce.userMangementService.util.CartMapper;
 
 import java.util.List;
@@ -29,6 +30,7 @@ public class CartService {
     ProductCartService productCartService;
     UserService userService;
 
+    @Transactional
     public CartResponse create() {
 
         log.info("start method create new cart CartService");
@@ -92,6 +94,7 @@ public class CartService {
         productCartService.saveProductToCart(cartId, productId, request.getProduct());
     }
 
+    @Transactional
     public void delete(Long id) {
         CartEntity cart = cartRepository.findById(id).orElseThrow(
                 () -> new AppException(ApiError.CART_NOT_FOUND)

@@ -1,4 +1,4 @@
-package project.ecommerce.userMangementService.service;
+package project.ecommerce.userMangementService.service.external;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AccessLevel;
