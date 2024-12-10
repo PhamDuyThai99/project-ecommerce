@@ -2,8 +2,9 @@ package project.ecommerce.authService.util;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import lombok.Value;
+
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import project.ecommerce.authService.dto.response.external.RoleResponse;
 import project.ecommerce.authService.dto.response.external.UserInternalResponse;
 import project.ecommerce.authService.exception.ApiError;
@@ -19,9 +20,9 @@ import java.util.UUID;
 public class JwtUtil {
 
     @Value("${token.secreteKey}")
-    private static final String SECRET_KEY;
+    private static String SECRET_KEY;
     @Value("${token.expiredTime}")
-    private static final long EXPIRATION_TIME;
+    private static long EXPIRATION_TIME;
 
     public static String generateToken(UserInternalResponse response) {
         try {

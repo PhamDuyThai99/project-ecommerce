@@ -1,10 +1,21 @@
-package authService.src.main.java.project.ecommerce.authService.service;
+package project.ecommerce.authService.service;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import project.ecommerce.authService.dto.response.common.ApiResponse;
+import project.ecommerce.authService.dto.response.external.UserInternalResponse;
+import project.ecommerce.authService.exception.ApiError;
+import project.ecommerce.authService.exception.AppException;
 
 @Service
 @Slf4j
 public class UserService {
     @Value("${externalApi.userService.getUserByUsernameUrl}")
-    private static final String GET_USER_BY_USERNAME_URL;
+    private static String GET_USER_BY_USERNAME_URL;
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
 
@@ -17,7 +28,6 @@ public class UserService {
         String getUserUrl = GET_USER_BY_USERNAME_URL.replace("{username}", username);
         ApiResponse apiResponse;
         try {
-            log.info("AuthenticationRequest {}", request);
             apiResponse = restTemplate.getForObject(getUserUrl, ApiResponse.class);
             log.info("found user apiResponse: " + apiResponse);
         } catch (RuntimeException ex) {
