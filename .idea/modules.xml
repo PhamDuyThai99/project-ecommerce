@@ -7,7 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/cartManagementService/cartManagementService.iml" filepath="$PROJECT_DIR$/cartManagementService/cartManagementService.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/ecommerce-project-ThaiTheo.iml" filepath="$PROJECT_DIR$/.idea/ecommerce-project-ThaiTheo.iml" />
       <module fileurl="file://$PROJECT_DIR$/paymentManagementService/paymentManagementService.iml" filepath="$PROJECT_DIR$/paymentManagementService/paymentManagementService.iml" />
-      <module fileurl="file://$PROJECT_DIR$/productMangementService/productManagementService.iml" filepath="$PROJECT_DIR$/productMangementService/productManagementService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/productManagementService/productManagementService.iml" filepath="$PROJECT_DIR$/productManagementService/productManagementService.iml" />
       <module fileurl="file://$PROJECT_DIR$/userMangementService/userMangementService.iml" filepath="$PROJECT_DIR$/userMangementService/userMangementService.iml" />
     </modules>
   </component>
