@@ -21,3 +21,7 @@ logging:
     org:
       springframework:
         security: TRACE
+
+externalApis:
+  userService:
+    getCurrentUserUrl: "http://localhost:8080/api/auth/currentInfo"

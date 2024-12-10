@@ -14,6 +14,7 @@ import project.ecommerce.userMangementService.entity.ProductEntity;
 import project.ecommerce.userMangementService.exception.ApiError;
 import project.ecommerce.userMangementService.exception.AppException;
 import project.ecommerce.userMangementService.repository.ProductRepository;
+import project.ecommerce.userMangementService.service.external.UserService;
 import project.ecommerce.userMangementService.util.ProductMapper;
 
 import java.util.List;
@@ -22,18 +23,14 @@ import java.util.Optional;
 @Service
 @Slf4j
 public class ProductService {
-    private final static String GET_CURRENT_USER_URL="http://localhost:8080/api/auth/currentInfo";
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
-    private final RestTemplate restTemplate;
-    private final ObjectMapper objectMapper;
+    private final UserService userService;
 
-    public ProductService(ProductRepository productRepository, ProductMapper productMapper,
-                          RestTemplate restTemplate, ObjectMapper objectMapper) {
+    public ProductService(ProductRepository productRepository, ProductMapper productMapper, UserService userService) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
-        this.restTemplate = restTemplate;
-        this.objectMapper = objectMapper;
+        this.userService = userService;
     }
 
     public ProductResponse create(ProductRequest request) {
@@ -46,7 +43,7 @@ public class ProductService {
         ProductEntity product = productMapper.toEntity(request);
 
         // add product owner id -> current user id
-        product.setProductOwnerId(getCurrentUserId());
+        product.setProductOwnerId(userService.getCurrentUserIdFromUserService());
         ProductResponse response = productMapper.toResponse(productRepository.save(product));
         log.info("response: {}", response);
         return response;
@@ -108,17 +105,5 @@ public class ProductService {
         return SearchProductResponse.builder()
                 .products(productResponse)
                 .build();
-    }
-
-    private Long getCurrentUserId() {
-        log.info("start searching for get user id by token");
-        ApiResponse response = restTemplate.getForObject(GET_CURRENT_USER_URL, ApiResponse.class);
-        log.info("response GET_CURRENT_USER_URL: {}", response);
-
-        assert response != null;
-        GetCurrentUserInfoResponse data =
-                objectMapper.convertValue(response.getData(), GetCurrentUserInfoResponse.class);
-
-        return data.getUserId();
     }
 }
