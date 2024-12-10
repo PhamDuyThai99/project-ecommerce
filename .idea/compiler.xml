@@ -9,10 +9,10 @@
         <outputRelativeToContentRoot value="true" />
         <module name="apiGatewayService" />
         <module name="authService" />
-        <module name="userMangementService (2)" />
-        <module name="userMangementService (3)" />
+        <module name="productManagementService" />
+        <module name="userMangementService" />
       </profile>
-      <profile name="Annotation profile for userManagementService" enabled="true">
+      <profile name="Annotation profile for paymentManagementService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -25,13 +25,16 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.5.Final/mapstruct-processor-1.5.5.Final.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar" />
         </processorPath>
-        <module name="userMangementService" />
-        <module name="userMangementService (1)" />
+        <module name="paymentManagementService" />
+        <module name="cartManagementService" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="apiGatewayService" target="19" />
       <module name="authService" target="19" />
+      <module name="cartManagementService" target="19" />
+      <module name="paymentManagementService" target="19" />
+      <module name="productManagementService" target="19" />
       <module name="userMangementService" target="19" />
       <module name="userMangementService (1)" target="19" />
       <module name="userMangementService (2)" target="19" />
@@ -42,7 +45,10 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="apiGatewayService" options="-parameters" />
       <module name="authService" options="-parameters" />
-      <module name="userMangementService" options="-parameters -Amapstruct.suppressGeneratorTimestamp=true -Amapstruct.defaultComponentModel=spring -Amapstruct.verbose=true" />
+      <module name="cartManagementService" options="-parameters -Amapstruct.suppressGeneratorTimestamp=true -Amapstruct.defaultComponentModel=spring -Amapstruct.verbose=true" />
+      <module name="paymentManagementService" options="-parameters -Amapstruct.suppressGeneratorTimestamp=true -Amapstruct.defaultComponentModel=spring -Amapstruct.verbose=true" />
+      <module name="productManagementService" options="-parameters" />
+      <module name="userMangementService" options="-parameters" />
       <module name="userMangementService (1)" options="-parameters -Amapstruct.suppressGeneratorTimestamp=true -Amapstruct.defaultComponentModel=spring -Amapstruct.verbose=true" />
       <module name="userMangementService (2)" options="-parameters" />
       <module name="userMangementService (3)" options="-parameters" />

@@ -4,11 +4,11 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/apiGatewayService/apiGatewayService.iml" filepath="$PROJECT_DIR$/apiGatewayService/apiGatewayService.iml" />
       <module fileurl="file://$PROJECT_DIR$/authService/authService.iml" filepath="$PROJECT_DIR$/authService/authService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cartManagementService/cartManagementService.iml" filepath="$PROJECT_DIR$/cartManagementService/cartManagementService.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/ecommerce-project-ThaiTheo.iml" filepath="$PROJECT_DIR$/.idea/ecommerce-project-ThaiTheo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/cartManagementService/userMangementService.iml" filepath="$PROJECT_DIR$/cartManagementService/userMangementService.iml" />
-      <module fileurl="file://$PROJECT_DIR$/paymentManagementService/userMangementService (1).iml" filepath="$PROJECT_DIR$/paymentManagementService/userMangementService (1).iml" />
-      <module fileurl="file://$PROJECT_DIR$/productMangementService/userMangementService (2).iml" filepath="$PROJECT_DIR$/productMangementService/userMangementService (2).iml" />
-      <module fileurl="file://$PROJECT_DIR$/userMangementService/userMangementService (3).iml" filepath="$PROJECT_DIR$/userMangementService/userMangementService (3).iml" />
+      <module fileurl="file://$PROJECT_DIR$/paymentManagementService/paymentManagementService.iml" filepath="$PROJECT_DIR$/paymentManagementService/paymentManagementService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/productMangementService/productManagementService.iml" filepath="$PROJECT_DIR$/productMangementService/productManagementService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/userMangementService/userMangementService.iml" filepath="$PROJECT_DIR$/userMangementService/userMangementService.iml" />
     </modules>
   </component>
 </project>

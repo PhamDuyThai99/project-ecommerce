@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7ba0e1c-80dc-447d-965f-8f00ace97ceb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/productMangementService/src/main/java/project/ecommerce/userMangementService/service/external/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/productMangementService/src/main/java/project/ecommerce/userMangementService/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/productMangementService/src/main/java/project/ecommerce/userMangementService/service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/productMangementService/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/productMangementService/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cartManagementService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cartManagementService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paymentManagementService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/paymentManagementService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/productMangementService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/productMangementService/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

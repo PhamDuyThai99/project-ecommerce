@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>project.ecommerce</groupId>
-	<artifactId>userMangementService</artifactId>
+	<artifactId>cartManagementService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>userManagementService</name>
-	<description>userManagementService</description>
+	<name>cartManagementService</name>
+	<description>cartManagementService</description>
 	<url/>
 	<licenses>
 		<license/>
