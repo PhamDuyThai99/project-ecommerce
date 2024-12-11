@@ -6,19 +6,15 @@ import project.ecommerce.userMangementService.dto.request.BalanceRequest;
 import project.ecommerce.userMangementService.dto.response.BalanceResponse;
 import project.ecommerce.userMangementService.entity.BalanceEntity;
 
-@Component
 public class BalanceMapper {
-    private final ObjectMapper objectMapper;
 
-    public BalanceMapper(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
-    }
-
-    public BalanceEntity toBalanceEntity(BalanceRequest request) {
+    public static BalanceEntity toBalanceEntity(BalanceRequest request) {
+        ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.convertValue(request, BalanceEntity.class);
     }
 
-    public BalanceResponse toBalanceResponse(BalanceEntity balance) {
+    public static BalanceResponse toBalanceResponse(BalanceEntity balance) {
+        ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.convertValue(balance, BalanceResponse.class);
     }
 }

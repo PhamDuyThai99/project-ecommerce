@@ -23,14 +23,10 @@ import java.util.Optional;
 public class BalanceService {
 
     private final BalanceRepository balanceRepository;
-    private final BalanceMapper balanceMapper;
     private final UserService userService;
 
-    public BalanceService(BalanceRepository balanceRepository,
-                          BalanceMapper balanceMapper,
-                          UserService userService) {
+    public BalanceService(BalanceRepository balanceRepository, UserService userService) {
         this.balanceRepository = balanceRepository;
-        this.balanceMapper = balanceMapper;
         this.userService = userService;
     }
 
@@ -54,7 +50,7 @@ public class BalanceService {
                 .balance(initialBalance)
                 .build();
 
-        BalanceResponse response = balanceMapper.toBalanceResponse(balanceRepository.save(newBalance));
+        BalanceResponse response = BalanceMapper.toBalanceResponse(balanceRepository.save(newBalance));
         log.info("balance created successfully with response = {}", response);
         return response;
     }
@@ -67,7 +63,7 @@ public class BalanceService {
             log.info("no balance found");
             throw new AppException(ApiError.USER_HAS_NO_BALANCE);
         }
-        BalanceResponse response = balanceMapper.toBalanceResponse(balance.get());
+        BalanceResponse response = BalanceMapper.toBalanceResponse(balance.get());
         log.info("balance found with response {}", response);
         return response;
     }
@@ -87,7 +83,7 @@ public class BalanceService {
         BalanceEntity balanceEntity = optionalBalance.get();
         balanceEntity.setBalance(balance);
 
-        return balanceMapper.toBalanceResponse(balanceRepository.save(balanceEntity));
+        return BalanceMapper.toBalanceResponse(balanceRepository.save(balanceEntity));
     }
 
     public void checkUserIdFromUserService(Long userId) {

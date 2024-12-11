@@ -11,9 +11,8 @@ import project.ecommerce.userMangementService.entity.TransactionEntity;
 import project.ecommerce.userMangementService.enums.PaymentStatusEnum;
 import project.ecommerce.userMangementService.enums.TransactionTypeEnum;
 
-@Component
 public class TransactionMapper {
-    public TransactionDetailResponse toTransactionResponse(TransactionEntity transactionEntity) {
+    public static TransactionDetailResponse toTransactionResponse(TransactionEntity transactionEntity) {
         return TransactionDetailResponse.builder()
                 .transactionId(transactionEntity.getTransactionId())
                 .payerId(transactionEntity.getPayerId())
@@ -27,7 +26,7 @@ public class TransactionMapper {
                 .build();
     }
 
-    public TransactionEntity toEntityForP2PTransaction(CreateP2PTransactionRequest request) {
+    public static TransactionEntity toEntityForP2PTransaction(CreateP2PTransactionRequest request) {
 
         return TransactionEntity.builder()
                 .payerId(request.getPayerId())
@@ -38,7 +37,7 @@ public class TransactionMapper {
                 .build();
     }
 
-    public TransactionEntity toEntityForCartTransaction(CreateCartTransactionRequest request) {
+    public static TransactionEntity toEntityForCartTransaction(CreateCartTransactionRequest request) {
 
         return TransactionEntity.builder()
                 .payerId(request.getPayerId())
@@ -48,7 +47,7 @@ public class TransactionMapper {
                 .build();
     }
 
-    public TransactionEntity toEntityForWithdrawTransaction(CreateWithdrawTransactionRequest request) {
+    public static TransactionEntity toEntityForWithdrawTransaction(CreateWithdrawTransactionRequest request) {
         return TransactionEntity.builder()
                 .payerId(request.getPayerId())
                 .amount(request.getAmount())
@@ -58,7 +57,7 @@ public class TransactionMapper {
 
     }
 
-    public TransactionEntity toEntityForReloadTransaction(CreateReloadTransactionRequest request) {
+    public static TransactionEntity toEntityForReloadTransaction(CreateReloadTransactionRequest request) {
         return TransactionEntity.builder()
                 .payeeId(request.getPayeeId())
                 .amount(request.getAmount())
@@ -68,7 +67,7 @@ public class TransactionMapper {
 
     }
 
-    public CreateTransactionResponse toCreateTransactionResponse(TransactionEntity transaction) {
+    public static CreateTransactionResponse toCreateTransactionResponse(TransactionEntity transaction) {
         return CreateTransactionResponse.builder()
                 .transactionId(transaction.getTransactionId())
                 .build();

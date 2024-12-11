@@ -30,19 +30,16 @@ import java.util.concurrent.*;
 @Service
 public class TransactionService {
     private final TransactionRepository transactionRepository;
-    private final TransactionMapper transactionMapper;
     private final TransactionValidationService transactionValidationService;
     private final TransactionPersistenceService transactionPersistenceService;
     private final TransactionProcessingService transactionProcessingService;
     private final ExecutorService executorService = Executors.newFixedThreadPool(10);
 
-    public TransactionService(TransactionMapper transactionMapper,
-                              TransactionValidationService transactionValidationService,
+    public TransactionService(TransactionValidationService transactionValidationService,
                               TransactionPersistenceService transactionPersistenceService,
                               TransactionProcessingService transactionProcessingService,
                               TransactionRepository transactionRepository) {
 
-        this.transactionMapper = transactionMapper;
         this.transactionValidationService = transactionValidationService;
         this.transactionPersistenceService = transactionPersistenceService;
         this.transactionProcessingService = transactionProcessingService;
@@ -57,10 +54,10 @@ public class TransactionService {
         transactionValidationService.validateUserIdForTransaction(request.getPayeeId());
 
         // save transaction to order with pending
-        TransactionEntity transaction = transactionMapper.toEntityForP2PTransaction(request);
+        TransactionEntity transaction = TransactionMapper.toEntityForP2PTransaction(request);
         transactionPersistenceService.saveTransaction(transaction);
 
-        return transactionMapper.toCreateTransactionResponse(transaction);
+        return TransactionMapper.toCreateTransactionResponse(transaction);
     }
 
     @Transactional
@@ -97,7 +94,7 @@ public class TransactionService {
         // save this transaction to database
         List<TransactionEntity> transactions = productOwnerTotalAmountMap.entrySet().stream()
                 .map(mapEntry -> {
-                    TransactionEntity transaction = transactionMapper.toEntityForCartTransaction(request);
+                    TransactionEntity transaction = TransactionMapper.toEntityForCartTransaction(request);
                     transaction.setPayeeId(mapEntry.getKey());
                     transaction.setAmount(mapEntry.getValue());
                     return transaction;
@@ -141,7 +138,7 @@ public class TransactionService {
 
     public TransactionDetailResponse getTransactionDetails(String transactionId) {
         log.info("get transaction at id {}", transactionId);
-        return transactionMapper.toTransactionResponse(
+        return TransactionMapper.toTransactionResponse(
                 transactionPersistenceService.findTransactionById(transactionId));
     }
 
@@ -155,10 +152,10 @@ public class TransactionService {
         // validate balance
         transactionValidationService.validateBalance(request.getPayerId(), request.getAmount());
 
-        TransactionEntity transaction = transactionMapper.toEntityForWithdrawTransaction(request);
+        TransactionEntity transaction = TransactionMapper.toEntityForWithdrawTransaction(request);
         transactionPersistenceService.saveTransaction(transaction);
 
-        return transactionMapper.toCreateTransactionResponse(transaction);
+        return TransactionMapper.toCreateTransactionResponse(transaction);
     }
 
     @Transactional
@@ -186,10 +183,10 @@ public class TransactionService {
         // validate balance
         transactionValidationService.validateBalance(request.getPayeeId(), request.getAmount());
 
-        TransactionEntity transaction = transactionMapper.toEntityForReloadTransaction(request);
+        TransactionEntity transaction = TransactionMapper.toEntityForReloadTransaction(request);
         transactionPersistenceService.saveTransaction(transaction);
 
-        return transactionMapper.toCreateTransactionResponse(transaction);
+        return TransactionMapper.toCreateTransactionResponse(transaction);
     }
 
     @Transactional
