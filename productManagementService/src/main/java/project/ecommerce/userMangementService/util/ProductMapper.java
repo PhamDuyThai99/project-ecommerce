@@ -26,5 +26,5 @@ public class ProductMapper {
         product.setStock(request.getStock());
         product.setPrice(request.getPrice());
         return product;
-    };
+    }
 }
